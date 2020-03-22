@@ -53,6 +53,14 @@ class mpu6050:
     ACCEL_CONFIG = 0x1C
     GYRO_CONFIG = 0x1B
 
+    MPU6050_RA_XA_OFFS_H     =  0x06 
+    MPU6050_RA_YA_OFFS_H     =  0x08 
+    MPU6050_RA_ZA_OFFS_H     =  0x0A 
+    MPU6050_RA_XG_OFFS_USRH  =  0x13 
+    MPU6050_RA_YG_OFFS_USRH  =  0x15 
+    MPU6050_RA_ZG_OFFS_USRH  =  0x17 
+  
+    
     def __init__(self, address, bus=1):
         self.address = address
         self.bus = smbus.SMBus(bus)
@@ -240,6 +248,21 @@ class mpu6050:
         gyro = self.get_gyro_data()
 
         return [accel, gyro, temp]
+
+    def setCalibrationOffsets(self,offsets):
+        self.bus.write_byte_data(self.address, self.MPU6050_RA_XA_OFFS_H, offsets[1])
+        self.bus.write_byte_data(self.address, self.MPU6050_RA_YA_OFFS_H, offsets[2])
+        self.bus.write_byte_data(self.address, self.MPU6050_RA_ZA_OFFS_H, offsets[3])
+        self.bus.write_byte_data(self.address, self.MPU6050_RA_XG_OFFS_USRH, offsets[4])
+        self.bus.write_byte_data(self.address, self.MPU6050_RA_XA_OFFS_H, offsets[5])
+        self.bus.write_byte_data(self.address, self.MPU6050_RA_XA_OFFS_H, offsets[6])
+        
+        MPU6050_RA_XA_OFFS_H     =  0x06 
+         =  0x08 
+         =  0x0A 
+      =  0x13 
+    MPU6050_RA_YG_OFFS_USRH  =  0x15 
+    MPU6050_RA_ZG_OFFS_USRH  =  0x17 
 
 if __name__ == "__main__":
     mpu = mpu6050(0x68)
