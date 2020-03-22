@@ -67,13 +67,20 @@ linear_z_mean=linear_z_mean/cal_steps
 rot_x_mean=rot_x_mean/cal_steps
 rot_y_mean=rot_y_mean/cal_steps
 rot_z_mean=rot_y_mean/cal_steps
-
+"""
 linear_x_offset = -linear_x_mean/8
 linear_y_offset = -linear_y_mean/8
 linear_z_offset = (16384-linear_z_mean)/8
 rot_x_offset = -rot_x_mean/4
 rot_y_offset = -rot_y_mean/4
 rot_z_offset = -rot_z_mean/4
+"""
+linear_x_offset = -linear_x_mean
+linear_y_offset = -linear_y_mean
+linear_z_offset = (16384-linear_z_mean)/8
+rot_x_offset = -rot_x_mean
+rot_y_offset = -rot_y_mean
+rot_z_offset = -rot_z_mean
 
 print("linear acceleration in x direction mean value equals " + str(linear_x_mean))
 print("linear acceleration in y direction mean value equals " + str(linear_y_mean))
